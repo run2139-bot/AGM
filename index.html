@@ -133,7 +133,7 @@ footer ul{padding-left:18px;margin-bottom:14px}
       <div class="desc">첫 달 구독료 할인</div>
       <div class="code-row">
         <span class="code" id="code">AGM50</span>
-        <button class="copy" id="copyBtn" type="button">코드 복사</button>
+        <button class="copy" id="copyBtn" type="button" data-cta="coupon_copy">코드 복사</button>
       </div>
       <div class="timer" role="timer" aria-live="off">
         <div><b id="d">00</b><span>일</span></div>
@@ -266,8 +266,17 @@ footer ul{padding-left:18px;margin-bottom:14px}
   // 쿠폰 복사
   // 이벤트 추적: CTA 클릭 / 쿠폰 복사 (유입 채널 포함)
   var utm = {utm_source: src || 'direct', utm_medium: new URLSearchParams(location.search).get('utm_medium') || '', utm_campaign: new URLSearchParams(location.search).get('utm_campaign') || ''};
+  var seen = {};
+  function ctaProps(el){ return Object.assign({cta_id: el.getAttribute('data-cta'), cta_text: el.textContent.trim().replace(/\s+/g,' ')}, utm); }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var id = en.target.getAttribute('data-cta');
+      if(en.isIntersecting && !seen[id]){ seen[id] = true; window.track('cta_impression', ctaProps(en.target)); io.unobserve(en.target); }
+    });
+  }, {threshold: 0.6}) : null;
   document.querySelectorAll('[data-cta]').forEach(function(a){
-    a.addEventListener('click', function(){ window.track('cta_click', Object.assign({location: a.getAttribute('data-cta')}, utm)); });
+    if(io) io.observe(a);
+    a.addEventListener('click', function(){ window.track('cta_click', ctaProps(a)); });
   });
 
   $('copyBtn').addEventListener('click', function(){
