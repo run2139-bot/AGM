@@ -99,6 +99,19 @@ footer ul{padding-left:18px;margin-bottom:14px}
 @media(max-width:759px){.sticky{display:block}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
+<script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+<script>
+  // Amplitude 프로젝트 > Settings > Project에서 확인한 API Key로 교체하세요 (프로젝트 ID 878969와 다른 값입니다).
+  window.AMPLITUDE_API_KEY = '522133eb221285795d3e4b38db70bd02';
+  window.track = function(name, props){
+    try{ if(window.amplitude && window.AMPLITUDE_API_KEY !== 'YOUR_AMPLITUDE_API_KEY') amplitude.track(name, props); }catch(e){}
+  };
+  try{
+    if(window.amplitude && window.AMPLITUDE_API_KEY !== 'YOUR_AMPLITUDE_API_KEY'){
+      amplitude.init(window.AMPLITUDE_API_KEY, {defaultTracking:{pageViews:true,sessions:true}});
+    }
+  }catch(e){}
+</script>
 </head>
 <body>
 
@@ -251,7 +264,14 @@ footer ul{padding-left:18px;margin-bottom:14px}
   link.setAttribute('href', url);
 
   // 쿠폰 복사
+  // 이벤트 추적: CTA 클릭 / 쿠폰 복사 (유입 채널 포함)
+  var utm = {utm_source: src || 'direct', utm_medium: new URLSearchParams(location.search).get('utm_medium') || '', utm_campaign: new URLSearchParams(location.search).get('utm_campaign') || ''};
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.addEventListener('click', function(){ window.track('cta_click', Object.assign({location: a.getAttribute('data-cta')}, utm)); });
+  });
+
   $('copyBtn').addEventListener('click', function(){
+    window.track('coupon_copy', Object.assign({code: $('code').textContent}, utm));
     var btn = this, text = $('code').textContent;
     function ok(){ btn.textContent='복사됨 ✓'; btn.classList.add('done');
       setTimeout(function(){btn.textContent='코드 복사'; btn.classList.remove('done')},1800); }
