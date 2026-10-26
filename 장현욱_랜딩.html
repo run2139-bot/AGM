@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGM | 첫 달 구독료 50% 할인</title>
+<meta name="description" content="처음 구독하는 20대라면 첫 달 50% 할인 쿠폰을 받아가세요. 기간 한정 혜택, 언제든 해지 가능.">
+<meta property="og:title" content="AGM 첫 구독 50% 할인">
+<meta property="og:description" content="처음이라면 첫 달 절반 가격. 쿠폰 마감 전에 시작하세요.">
+<style>
+:root{
+  --bg:#0f0e17; --surface:#1a1928; --surface2:#232236; --text:#f5f4ff; --muted:#a9a7c4;
+  --accent:#ff5c8a; --accent2:#7c5cff; --ok:#3ddc97; --radius:18px;
+  --grad:linear-gradient(135deg,var(--accent2),var(--accent));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h1,h2,h3{line-height:1.25;letter-spacing:-.02em}
+h2{font-size:clamp(24px,4vw,34px);margin-bottom:12px}
+.lead{color:var(--muted);margin-bottom:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad);color:#fff;font-weight:700;font-size:17px;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 28px rgba(255,92,138,.35)}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.copy:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:10;background:var(--grad);color:#fff;font-size:14px;font-weight:600;text-align:center;padding:9px 12px}
+.topbar b{font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{padding:64px 0 56px;background:radial-gradient(60% 50% at 80% 0%,rgba(124,92,255,.28),transparent),radial-gradient(50% 50% at 0% 30%,rgba(255,92,138,.2),transparent)}
+.hero .wrap{display:grid;gap:40px;align-items:center}
+@media(min-width:860px){.hero .wrap{grid-template-columns:1.1fr .9fr}}
+.tag{display:inline-block;background:var(--surface2);color:var(--accent);font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,56px);margin-bottom:18px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{color:var(--muted);font-size:18px;margin-bottom:28px;max-width:30em}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* coupon */
+.coupon{background:var(--surface);border-radius:var(--radius);padding:28px;position:relative;border:1px solid rgba(255,255,255,.08)}
+.coupon::before,.coupon::after{content:"";position:absolute;top:58%;width:26px;height:26px;background:var(--bg);border-radius:50%}
+.coupon::before{left:-13px}.coupon::after{right:-13px}
+.coupon .label{color:var(--muted);font-size:14px}
+.coupon .off{font-size:64px;font-weight:900;line-height:1.1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.coupon .off small{font-size:24px}
+.coupon .desc{margin:4px 0 22px;font-weight:600}
+.code-row{border-top:2px dashed rgba(255,255,255,.18);padding-top:22px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.code{font-family:ui-monospace,Consolas,monospace;font-size:24px;font-weight:700;letter-spacing:.12em}
+.copy{background:var(--surface2);color:var(--text);border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer}
+.copy.done{background:var(--ok);color:#06241a}
+.timer{display:flex;gap:8px;margin-top:20px}
+.timer div{flex:1;background:var(--surface2);border-radius:12px;text-align:center;padding:10px 4px}
+.timer b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.timer span{font-size:12px;color:var(--muted)}
+.deadline{margin-top:14px;font-size:14px;color:var(--muted);text-align:center}
+.deadline strong{color:var(--accent)}
+
+/* cards */
+.grid{display:grid;gap:16px}
+@media(min-width:760px){.grid.c3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border-radius:var(--radius);padding:28px;border:1px solid rgba(255,255,255,.06)}
+.card .ico{font-size:30px;margin-bottom:14px}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.step .n{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;margin-bottom:14px}
+
+/* price compare */
+.price{display:grid;gap:16px}
+@media(min-width:760px){.price{grid-template-columns:1fr 1fr}}
+.price .card.hl{border:2px solid var(--accent);position:relative}
+.price .badge{position:absolute;top:-13px;left:24px;background:var(--accent);color:#fff;font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px}
+.price .amt{font-size:38px;font-weight:900;margin:8px 0}
+.price .amt s{font-size:18px;color:var(--muted);font-weight:500;margin-right:6px}
+.price ul{list-style:none;color:var(--muted);font-size:15px}
+.price li::before{content:"✓ ";color:var(--ok);font-weight:800}
+
+/* faq */
+details{background:var(--surface);border-radius:14px;margin-bottom:10px;padding:18px 22px}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin-top:12px;font-size:15px}
+
+/* final cta */
+.final{text-align:center;background:var(--surface);border-radius:28px;padding:56px 24px}
+.final h2{font-size:clamp(26px,4.5vw,38px)}
+.final p{color:var(--muted);margin-bottom:28px}
+
+footer{padding:36px 0 110px;color:var(--muted);font-size:13px}
+footer ul{padding-left:18px;margin-bottom:14px}
+
+/* mobile sticky cta */
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(15,14,23,.92);backdrop-filter:blur(8px);z-index:20;display:none}
+.sticky .btn{width:100%}
+@media(max-width:759px){.sticky{display:block}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">🎟️ 신규 구독 쿠폰 마감까지 <b id="topLeft">D-30</b></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag" id="channelTag">첫 구독 고객 전용</span>
+      <h1>아직 구독 전이라면,<br><em>첫 달은 반값</em>으로.</h1>
+      <p class="sub">한 번도 구독해 본 적 없는 20대라면 누구나. 쿠폰 하나로 첫 달 구독료 50%를 바로 할인받으세요.</p>
+      <a class="btn" href="#signup" data-cta="hero">50% 할인받고 시작하기 →</a>
+      <p class="note">언제든 해지 가능 · 첫 구독 이력이 없는 계정 대상</p>
+    </div>
+
+    <aside class="coupon" aria-label="할인 쿠폰">
+      <div class="label">NEW MEMBER COUPON</div>
+      <div class="off">50<small>%</small> OFF</div>
+      <div class="desc">첫 달 구독료 할인</div>
+      <div class="code-row">
+        <span class="code" id="code">AGM50</span>
+        <button class="copy" id="copyBtn" type="button">코드 복사</button>
+      </div>
+      <div class="timer" role="timer" aria-live="off">
+        <div><b id="d">00</b><span>일</span></div>
+        <div><b id="h">00</b><span>시간</span></div>
+        <div><b id="m">00</b><span>분</span></div>
+        <div><b id="s">00</b><span>초</span></div>
+      </div>
+      <p class="deadline">쿠폰 사용 기한 <strong id="deadlineText"></strong>까지</p>
+    </aside>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>처음이라서 부담스러웠다면</h2>
+    <p class="lead">시작 장벽은 낮추고, 만족은 높였어요.</p>
+    <div class="grid c3">
+      <div class="card"><div class="ico">💸</div><h3>첫 달 50% 할인</h3><p>가입 후 쿠폰 코드만 입력하면 첫 결제 금액에서 자동 차감돼요.</p></div>
+      <div class="card"><div class="ico">🔓</div><h3>약정 없이 자유롭게</h3><p>마음에 안 들면 언제든 해지. 위약금도, 숨은 조건도 없어요.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3>1분이면 가입 끝</h3><p>간편 로그인으로 바로 시작. 복잡한 절차는 모두 걷어냈어요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>이렇게 달라져요</h2>
+    <p class="lead">쿠폰 적용 시 첫 달 결제 금액 비교</p>
+    <div class="price">
+      <div class="card">
+        <h3>일반 구독</h3>
+        <div class="amt">정가</div>
+        <ul><li>모든 기능 이용</li><li>언제든 해지</li></ul>
+      </div>
+      <div class="card hl">
+        <span class="badge">신규 한정</span>
+        <h3>쿠폰 적용 첫 달</h3>
+        <div class="amt"><s>정가</s>50% OFF</div>
+        <ul><li>모든 기능 동일하게 이용</li><li>언제든 해지</li><li>둘째 달부터 정상가 청구</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>3단계로 끝나요</h2>
+    <p class="lead">쿠폰 사용 기한 안에 가입하면 혜택이 적용됩니다.</p>
+    <div class="grid c3">
+      <div class="card step"><div class="n">1</div><h3>쿠폰 코드 복사</h3><p>위 쿠폰의 <b>AGM50</b>을 복사하세요.</p></div>
+      <div class="card step"><div class="n">2</div><h3>간편 가입</h3><p>1분 안에 회원가입을 마치세요.</p></div>
+      <div class="card step"><div class="n">3</div><h3>결제 시 코드 입력</h3><p>첫 달 구독료가 50% 할인돼요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="signup" style="padding-top:0">
+  <div class="wrap">
+    <div class="final">
+      <h2>쿠폰 마감 <span id="finalLeft" style="color:var(--accent)">D-30</span></h2>
+      <p>지금 시작하면 첫 달 구독료의 절반만 내면 돼요.</p>
+      <a class="btn" href="#" id="finalCta" data-cta="final">지금 50% 할인받고 구독하기</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>자주 묻는 질문</h2>
+    <p class="lead"></p>
+    <details><summary>누가 쿠폰을 받을 수 있나요?</summary><p>이전에 구독한 이력이 없는 신규 고객이 대상이에요. 계정당 1회만 사용할 수 있습니다.</p></details>
+    <details><summary>할인은 언제까지 적용되나요?</summary><p>쿠폰 사용 기한 내에 코드를 입력해 결제해야 해요. 남은 시간은 페이지 상단과 쿠폰 카드에서 확인할 수 있어요.</p></details>
+    <details><summary>둘째 달부터는 어떻게 되나요?</summary><p>첫 달 이후에는 정상 구독료가 청구돼요. 그 전에 언제든 해지할 수 있습니다.</p></details>
+    <details><summary>해지는 어떻게 하나요?</summary><p>마이페이지 &gt; 구독 관리에서 직접 해지할 수 있어요. 해지해도 남은 기간까지는 이용 가능합니다.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <ul>
+      <li>본 쿠폰은 첫 구독 신규 고객 한정이며, 중복 사용 및 타 쿠폰과의 병용이 불가합니다.</li>
+      <li>쿠폰은 첫 달 결제에만 적용되며 둘째 달부터 정상가가 청구됩니다.</li>
+      <li>사용 기한이 지나면 쿠폰은 자동 소멸됩니다.</li>
+    </ul>
+    <p>© AGM. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn" href="#signup" data-cta="sticky">50% 할인받고 시작하기</a></div>
+
+<script>
+(function(){
+  // 쿠폰 마감일 (한국시간). 캠페인 기간(1개월)에 맞춰 수정하세요.
+  var DEADLINE = new Date('2026-11-25T23:59:59+09:00');
+  var SIGNUP_URL = '#'; // 실제 가입 페이지 주소로 교체
+  var $ = function(id){return document.getElementById(id)};
+  var pad = function(n){return String(n).padStart(2,'0')};
+
+  $('deadlineText').textContent = DEADLINE.getFullYear()+'.'+pad(DEADLINE.getMonth()+1)+'.'+pad(DEADLINE.getDate())+' 23:59';
+
+  function tick(){
+    var diff = DEADLINE - new Date();
+    if(diff <= 0){
+      $('topbar').textContent = '이번 쿠폰 이벤트가 종료되었습니다';
+      ['d','h','m','s'].forEach(function(k){$(k).textContent='00'});
+      $('finalLeft').textContent = '종료';
+      return;
+    }
+    var d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+    $('d').textContent = pad(d); $('h').textContent = pad(h);
+    $('m').textContent = pad(m); $('s').textContent = pad(s);
+    var label = d > 0 ? 'D-'+d : pad(h)+':'+pad(m)+':'+pad(s);
+    $('topLeft').textContent = label; $('finalLeft').textContent = label;
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  // 유입 채널(utm_source)별 문구
+  var src = new URLSearchParams(location.search).get('utm_source');
+  var tags = {instagram:'📸 인스타그램 단독 쿠폰', youtube:'▶️ 유튜브 시청자 전용 쿠폰', naver:'🔎 네이버 검색 고객 혜택'};
+  if(src && tags[src]) $('channelTag').textContent = tags[src];
+
+  // 가입 링크에 utm 유지
+  var link = $('finalCta');
+  var url = SIGNUP_URL;
+  if(url !== '#' && location.search) url += (url.indexOf('?')>-1?'&':'?') + location.search.slice(1);
+  link.setAttribute('href', url);
+
+  // 쿠폰 복사
+  $('copyBtn').addEventListener('click', function(){
+    var btn = this, text = $('code').textContent;
+    function ok(){ btn.textContent='복사됨 ✓'; btn.classList.add('done');
+      setTimeout(function(){btn.textContent='코드 복사'; btn.classList.remove('done')},1800); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(text).then(ok, ok); } else { ok(); }
+  });
+})();
+</script>
+</body>
+</html>
